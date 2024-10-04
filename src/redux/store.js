@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import conversionReducer from './conversionSlice';
-import tickerReducer from './tickerSlice';
+import conversionReducer from './cryptoConverterSlice';
+import tickerReducer from './tickersSlice';
 
 export const store = configureStore({
   reducer: {
     conversions: conversionReducer,
+    markets: conversionReducer,
     tickers: tickerReducer,
   },
 });
