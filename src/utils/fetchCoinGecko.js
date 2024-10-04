@@ -47,15 +47,12 @@ export const fetchSupportedCurrencies = async () => {
     }
 
     try {
-        console.log('coin:', inputCurrency);
-        console.log('target c:', targetCurrency);
         const response = await fetch(`${API_BASE_URL}/simple/price?ids=${inputCurrency}&vs_currencies=${targetCurrency}&precision=6`);
         
         const data = await response.json();
-        console.log('API Response:', data);
         const rate = data[inputCurrency][targetCurrency];
-    
-        conversionRateCache[cacheKey] = rate; // Cache the rate
+        // Cache the rate
+        conversionRateCache[cacheKey] = rate;
         return rate;
     } catch (error) {
         console.error('Error fetching conversion:', error);
@@ -80,11 +77,8 @@ export const fetchExchangesList = async () => {
     try {
         const response = await fetch(`${API_BASE_URL}/coins/${coinId}/tickers?exchange_ids=${marketId}`);
         const data = await response.json();
-        
-        // Log the tickers data to understand its structure
-        console.log('Tickers Data:', data);
 
-        return data.tickers; // This should return the tickers
+        return data.tickers;
     } catch (error) {
         console.error('Error fetching tickers:', error);
         throw error;
